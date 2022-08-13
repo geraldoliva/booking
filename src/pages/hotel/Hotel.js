@@ -1,5 +1,11 @@
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleArrowLeft,
+  faCircleArrowRight,
+  faCircleXmark,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
@@ -7,18 +13,21 @@ import Navbar from "../../components/navbar/Navbar";
 import "./Hotel.css";
 
 const Hotel = () => {
+  const [slideNumber, setSlideNumber] = useState(0);
+  const [open, setOpen] = useState(false);
+
   const photos = [
     {
       src: "https://t-cf.bstatic.com/xdata/images/hotel/square600/297581121.webp?k=b98fce422f9ca8f00f696576e1fd564b6084144cff38a75e4f6208f03eb59d69&o=&s=1",
     },
     {
-      src: "https://t-cf.bstatic.com/xdata/images/hotel/square600/297581121.webp?k=b98fce422f9ca8f00f696576e1fd564b6084144cff38a75e4f6208f03eb59d69&o=&s=1",
+      src: "https://t-cf.bstatic.com/xdata/images/hotel/square600/267122247.webp?k=0c55fc3f2f569beaf3c9511d7a68b73fe689e1a31da8b1b46448860a3cc9ce08&o=&s=1",
     },
     {
       src: "https://t-cf.bstatic.com/xdata/images/hotel/square600/297581121.webp?k=b98fce422f9ca8f00f696576e1fd564b6084144cff38a75e4f6208f03eb59d69&o=&s=1",
     },
     {
-      src: "https://t-cf.bstatic.com/xdata/images/hotel/square600/297581121.webp?k=b98fce422f9ca8f00f696576e1fd564b6084144cff38a75e4f6208f03eb59d69&o=&s=1",
+      src: "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/38570428.jpg?k=4232f28b945e99de37fafb3e751ebefbeeb5c345cf702d3adaaff27aa80e259f&o=&hp=1",
     },
     {
       src: "https://t-cf.bstatic.com/xdata/images/hotel/square600/297581121.webp?k=b98fce422f9ca8f00f696576e1fd564b6084144cff38a75e4f6208f03eb59d69&o=&s=1",
@@ -28,13 +37,52 @@ const Hotel = () => {
     },
   ];
 
+  const handleOpen = (i) => {
+    setSlideNumber(i);
+    setOpen(true);
+  };
+
+  const handleMove = (direction) => {
+    let newSlideNumber;
+
+    if (direction === "l") {
+      newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
+    } else {
+      newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
+    }
+
+    setSlideNumber(newSlideNumber);
+  };
+
   return (
     <div>
       <Navbar />
       <Header type="list" />
       <div className="hotelContainer">
+        {open && (
+          <div className="slider">
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="close"
+              onClick={() => setOpen(false)}
+            />
+            <FontAwesomeIcon
+              icon={faCircleArrowLeft}
+              className="arrow"
+              onClick={() => handleMove("l")}
+            />
+            <div className="sliderWrapper">
+              <img src={photos[slideNumber].src} alt="" className="sliderImg" />
+            </div>
+            <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              className="arrow"
+              onClick={() => handleMove("r")}
+            />
+          </div>
+        )}
         <div className="hotelWrapper">
-        <button className="bookNow">Reserve or Book Now!</button>
+          <button className="bookNow">Reserve or Book Now!</button>
           <h1 className="hotelTitle">Grand Hotel</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />
@@ -47,9 +95,14 @@ const Hotel = () => {
             Boook a stay over $114 at this property and get a free airport taxi
           </span>
           <div className="hotelImages">
-            {photos.map((photo) => (
+            {photos.map((photo, i) => (
               <div className="hotelImgWrapper">
-                <img src={photo.src} alt="" className="hotelImg" />
+                <img
+                  onClick={() => handleOpen(i)}
+                  src={photo.src}
+                  alt=""
+                  className="hotelImg"
+                />
               </div>
             ))}
           </div>
@@ -65,7 +118,10 @@ const Hotel = () => {
             </div>
             <div className="hotelDetailsPrice">
               <h1>Perfect for a 9-night stay!</h1>
-              <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates aperiam voluptatibus autem.</span>
+              <span>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Voluptates aperiam voluptatibus autem.
+              </span>
               <h2>
                 <b>$945</b> (9 nights)
               </h2>
@@ -73,8 +129,8 @@ const Hotel = () => {
             </div>
           </div>
         </div>
-        <MailList/>
-        <Footer/>
+        <MailList />
+        <Footer />
       </div>
     </div>
   );
