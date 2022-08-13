@@ -27,13 +27,13 @@ const Hotel = () => {
       src: "https://t-cf.bstatic.com/xdata/images/hotel/square600/297581121.webp?k=b98fce422f9ca8f00f696576e1fd564b6084144cff38a75e4f6208f03eb59d69&o=&s=1",
     },
     {
-      src: "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/38570428.jpg?k=4232f28b945e99de37fafb3e751ebefbeeb5c345cf702d3adaaff27aa80e259f&o=&hp=1",
+      src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707389.jpg?k=52156673f9eb6d5d99d3eed9386491a0465ce6f3b995f005ac71abc192dd5827&o=&hp=1",
     },
     {
       src: "https://t-cf.bstatic.com/xdata/images/hotel/square600/297581121.webp?k=b98fce422f9ca8f00f696576e1fd564b6084144cff38a75e4f6208f03eb59d69&o=&s=1",
     },
     {
-      src: "https://t-cf.bstatic.com/xdata/images/hotel/square600/297581121.webp?k=b98fce422f9ca8f00f696576e1fd564b6084144cff38a75e4f6208f03eb59d69&o=&s=1",
+      src: "https://c.pxhere.com/images/50/f8/15fd700944811866f4544c78efca-1586349.jpg!d",
     },
   ];
 
